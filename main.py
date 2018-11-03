@@ -2,14 +2,18 @@ import random
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-app.config['DEBUG'] = True      # displays runtime errors in the browser, too
+app.config['DEBUG'] = True
 
-@app.route("/Main")
+@app.route("/main")
 def main():
-	return render.template("main.html")
-@app.route("/create", methods=["POST'])
-def index():
-    movie_list = ["Batman", "Finding Nemo", "Big Hero 6", "Finding Dory", "Star Trek: The Wrath Of Khan"]
-    chosen_word = random.choice(movie_list)
-    chosen_word2 = random.choice(movie_list)
+	return render_template("main.html")
+@app.route("/create", methods=["POST"])
+def main_function():
+    movie_list = ["batman", "finding nemo", "big hero 6", "finding dory", "star wars"]
+    movie_day2 = request.form["movie_day"]
+    movie_tommorow2 = request.form["movie_tommorow"]
+	movie_choice = random.choice(movie_list)
+	movie_day2 = movie_choice
+	movie_tommorow2 = movie_choice
+    return render_template("main.html", movie_day, movie_tommorow)
 app.run()
